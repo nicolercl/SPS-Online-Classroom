@@ -2,7 +2,6 @@
 package com.sps.team2.classes;
 public class Lecture {
 
-    private long mId;
     private String mTitle;
     private String mAccessCode;
 
