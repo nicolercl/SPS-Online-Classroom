@@ -18,15 +18,37 @@ public class RegisterServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
 
     if (mUserService.isUserLoggedIn()) {
       String userEmail = mUserService.getCurrentUser().getEmail();
-      //if user not found, save user
+      //if user not found, go to register
       if (mDatastore.getUser(userEmail) == null){
-        User user = new User(userEmail);
-        mDatastore.storeUser(user);
+        response.sendRedirect("/register.html");
+        return;
+      } else {
+        response.sendRedirect("/dashboard.html?user=" + userEmail);
       }
+    } else {
+      // Redirect to google log in
+      String googleLoginUrl = mUserService.createLoginURL("/login");
+      response.sendRedirect(googleLoginUrl);
+    }
+  }
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {    
+
+    if (mUserService.isUserLoggedIn()) {
+      final String userEmail = mUserService.getCurrentUser().getEmail();
+      final String name = request.getParameter("name");
+      if (name == null || name == "") {
+        response.sendRedirect("/register.html");
+        return;
+      }
+      final String identity = request.getParameter("identity");
+      User user = new User(name, userEmail, identity);
+
+      //store user to datastore
+      mDatastore.storeUser(user);
       response.sendRedirect("/dashboard.html?user=" + userEmail);
     } else {
       // Redirect to google log in

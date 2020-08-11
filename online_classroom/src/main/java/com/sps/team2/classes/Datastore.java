@@ -25,6 +25,7 @@ public class Datastore {
         userEntity.setProperty("email", user.getEmail());
         userEntity.setProperty("name", user.getName());
         userEntity.setProperty("courses", user.getCourses());
+        userEntity.setProperty("identity", user.getIdentity());
         mDatastore.put(userEntity);
     }
 
@@ -40,8 +41,9 @@ public class Datastore {
         }
 
         String name = (String) userEntity.getProperty("name");
+        String identity = (String) userEntity.getProperty("identity");
         HashSet<String> courses = (HashSet<String>) userEntity.getProperty("courses");
-        User user = new User(name, email, courses);
+        User user = new User(name, email, courses, identity);
         return user;
     }
 }

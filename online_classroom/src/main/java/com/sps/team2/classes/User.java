@@ -8,17 +8,20 @@ public class User {
     private String mName;
     private String mEmail;
     private HashSet<String> mCourses;
+    private String mIdentity; // prof or student
 
-    public User(String email) {
-        this.mName = "";
+    public User(String name, String email, String identity) {
+        this.mName = name;
         this.mEmail = email;
         this.mCourses = new HashSet<String> ();
+        this.mIdentity = identity;
     }
 
-    public User(String name, String email, HashSet<String> courses) {
+    public User(String name, String email, HashSet<String> courses, String identity) {
       this.mName = name;
       this.mEmail = email;
       this.mCourses = courses;
+      this.mIdentity = identity;
     }
     public String getName(){
         return this.mName;
@@ -29,6 +32,9 @@ public class User {
     public HashSet<String> getCourses(){
         return this.mCourses;
     }
+    public String getIdentity(){
+        return this.mIdentity;
+    }
     public void setName(String name){
         this.mName = name;
     }
@@ -37,5 +43,8 @@ public class User {
     }
     public void setCourses(HashSet<String>courses){
         this.mCourses = courses;
+    }
+    public void setIdentity(String identity){
+        this.mIdentity = identity;
     }
   }

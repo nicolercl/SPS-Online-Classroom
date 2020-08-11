@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Classroom</title>
+    <script src="js/loadPage.js"></script>
+</head>
+<body onload="checkLoginStatus()">
+    <h1>Register Page</h1>
+    <div id="login-container"></div>
+    <form action='/register' method='POST' id='register-form'>
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="identity">Identity</label><br>
+        <select name="identity" id="identity" form="register-form">
+            <option value="student">Student</option>
+            <option value="professor">Professor</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
