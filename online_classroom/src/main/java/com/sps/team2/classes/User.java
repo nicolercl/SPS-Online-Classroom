@@ -5,20 +5,20 @@ import java.util.HashSet;
 /** A user class. */
 public class User {
 
-    private long mId;
     private String mName;
     private String mEmail;
     private HashSet<String> mCourses;
 
-    public User(long id, String name, String email, HashSet<String> courses) {
-      this.mId = id;
+    public User(String email) {
+        this.mName = "";
+        this.mEmail = email;
+        this.mCourses = new HashSet<String> ();
+    }
+
+    public User(String name, String email, HashSet<String> courses) {
       this.mName = name;
       this.mEmail = email;
       this.mCourses = courses;
-    }
-
-    public long getId(){
-        return this.mId;
     }
     public String getName(){
         return this.mName;
@@ -28,9 +28,6 @@ public class User {
     }
     public HashSet<String> getCourses(){
         return this.mCourses;
-    }
-    public void setId(long id){
-        this.mId = id;
     }
     public void setName(String name){
         this.mName = name;
