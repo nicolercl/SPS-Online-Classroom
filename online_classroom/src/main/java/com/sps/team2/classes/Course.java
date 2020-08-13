@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Course {
 
-    private long mId;
     private String mTitle;
     private String mProfessor;
     private HashSet<String> mStudents;
@@ -13,9 +12,8 @@ public class Course {
     private ArrayList<String> mMaterials;
     
 
-    public Course(long id, String title, String professeor, HashSet<String> students, ArrayList<String> videos, 
+    public Course(String title, String professeor, HashSet<String> students, ArrayList<String> videos, 
                 ArrayList<String> materials) {
-      this.mId = id;
       this.mTitle = title;
       this.mProfessor = professeor;
       this.mStudents = students;
@@ -23,9 +21,6 @@ public class Course {
       this.mMaterials = materials;
     }
 
-    public long getId(){
-        return this.mId;
-    }
     public String getTitle(){
         return this.mTitle;
     }
@@ -40,9 +35,6 @@ public class Course {
     }
     public ArrayList<String> getMaterials(){
         return this.mMaterials;
-    }
-    public void setId(long id){
-        this.mId = id;
     }
     public void setStudents(HashSet<String> students){
         this.mStudents = students;
