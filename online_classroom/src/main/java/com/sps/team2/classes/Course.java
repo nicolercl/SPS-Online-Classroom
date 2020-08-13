@@ -1,18 +1,24 @@
 /** A course. */
 package com.sps.team2.classes;
-import java.util.HashSet;
 import java.util.ArrayList;
 
 public class Course {
 
     private String mTitle;
     private String mProfessor;
-    private HashSet<String> mStudents;
+    private ArrayList<String> mStudents;
     private ArrayList<String> mVideos;
     private ArrayList<String> mMaterials;
-    
 
-    public Course(String title, String professeor, HashSet<String> students, ArrayList<String> videos, 
+    public Course(String title, String professeor) {
+      this.mTitle = title;
+      this.mProfessor = professeor;
+      this.mStudents = new ArrayList<String> ();
+      this.mVideos = new ArrayList<String> ();
+      this.mMaterials = new ArrayList<String> ();
+    }
+
+    public Course(String title, String professeor, ArrayList<String> students, ArrayList<String> videos, 
                 ArrayList<String> materials) {
       this.mTitle = title;
       this.mProfessor = professeor;
@@ -27,7 +33,7 @@ public class Course {
     public String getProfessor(){
         return this.mProfessor;
     }
-    public HashSet<String> getStudents(){
+    public ArrayList<String> getStudents(){
         return this.mStudents;
     }
     public ArrayList<String> getVideos(){
@@ -36,7 +42,7 @@ public class Course {
     public ArrayList<String> getMaterials(){
         return this.mMaterials;
     }
-    public void setStudents(HashSet<String> students){
+    public void setStudents(ArrayList<String> students){
         this.mStudents = students;
     }
     public void setVideos(ArrayList<String> videos){

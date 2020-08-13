@@ -24,9 +24,9 @@ public class RegisterServlet extends HttpServlet {
       //if user not found, go to register
       if (mDatastore.getUser(userEmail) == null){
         response.sendRedirect("/register.html");
-        return;
+        // return;
       } else {
-        response.sendRedirect("/dashboard.html?user=" + userEmail);
+        response.sendRedirect("/dashboard.html");
       }
     } else {
       // Redirect to google log in
@@ -42,14 +42,13 @@ public class RegisterServlet extends HttpServlet {
       final String name = request.getParameter("name");
       if (name == null || name == "") {
         response.sendRedirect("/register.html");
-        return;
       }
       final String identity = request.getParameter("identity");
       User user = new User(name, userEmail, identity);
 
       //store user to datastore
       mDatastore.storeUser(user);
-      response.sendRedirect("/dashboard.html?user=" + userEmail);
+      response.sendRedirect("/dashboard.html");
     } else {
       // Redirect to google log in
       String googleLoginUrl = mUserService.createLoginURL("/login");
