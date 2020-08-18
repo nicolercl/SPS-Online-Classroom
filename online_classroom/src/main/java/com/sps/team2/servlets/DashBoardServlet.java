@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 public class DashBoardServlet extends HttpServlet {
 
   private final UserService mUserService = UserServiceFactory.getUserService();
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

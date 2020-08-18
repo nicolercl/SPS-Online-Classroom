@@ -14,10 +14,14 @@ import java.util.ArrayList;
  */
 public class Datastore {
 
-    private final DatastoreService mDatastore;
+    private final DatastoreService mDatastore = DatastoreServiceFactory.getDatastoreService();
+    private static Datastore sDatastore;
 
-    public Datastore() {
-        mDatastore = DatastoreServiceFactory.getDatastoreService();
+    public static synchronized Datastore getDatastore() {
+        if (sDatastore == null) {
+            sDatastore = new Datastore();
+        }
+        return sDatastore;
     }
     /* Stores the User in Datastore.*/
     public void storeUser(User user) {
@@ -87,11 +91,12 @@ public class Datastore {
         ArrayList<String> courses = (ArrayList<String>) userEntity.getProperty("courses");
         if (courses == null) {
             courses = new ArrayList<>();
-        }
-        // Check if already added
-        for (String course: courses) {
-            if (course.equals(newCourseTitle) ){
-                return;
+        } else {
+            // Check if already added
+            for (String course: courses) {
+                if (course.equals(newCourseTitle) ){
+                    return;
+                }
             }
         }
         courses.add(newCourseTitle);
@@ -110,11 +115,12 @@ public class Datastore {
         ArrayList<String> students = (ArrayList<String>) courseEntity.getProperty("students");
         if (students == null) {
             students = new ArrayList<>();
-        }
-        // Check if already added
-        for (String student: students) {
-            if (student.equals(email)){
-                return;
+        } else {
+            // Check if already added
+            for (String student: students) {
+                if (student.equals(email)){
+                    return;
+                }
             }
         }
         students.add(email);
@@ -152,15 +158,6 @@ public class Datastore {
         ArrayList<String> students = (ArrayList<String>) courseEntity.getProperty("students");
         ArrayList<String> videos = (ArrayList<String>) courseEntity.getProperty("videos");
         ArrayList<String> materials = (ArrayList<String>) courseEntity.getProperty("materials");
-        if (students == null) {
-            students = new ArrayList<>();
-        }
-        if (videos == null) {
-            videos = new ArrayList<>();
-        }
-        if (materials == null) {
-            materials = new ArrayList<>();
-        }
         final Course course = new Course(title, professor, students, videos, materials);
         return course;
     }

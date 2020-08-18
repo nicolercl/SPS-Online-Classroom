@@ -10,21 +10,13 @@ public class Course {
     private ArrayList<String> mVideos;
     private ArrayList<String> mMaterials;
 
-    public Course(String title, String professeor) {
-      this.mTitle = title;
-      this.mProfessor = professeor;
-      this.mStudents = new ArrayList<String> ();
-      this.mVideos = new ArrayList<String> ();
-      this.mMaterials = new ArrayList<String> ();
-    }
-
     public Course(String title, String professeor, ArrayList<String> students, ArrayList<String> videos, 
                 ArrayList<String> materials) {
       this.mTitle = title;
       this.mProfessor = professeor;
-      this.mStudents = students;
-      this.mVideos = videos;
-      this.mMaterials = materials;
+      this.mStudents = students == null ? new ArrayList<>() : students;
+      this.mVideos = videos == null? new ArrayList<>() : videos;
+      this.mMaterials = materials == null? new ArrayList<>() : materials;
     }
 
     public String getTitle(){

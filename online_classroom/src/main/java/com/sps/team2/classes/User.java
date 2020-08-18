@@ -10,17 +10,10 @@ public class User {
     private ArrayList<String> mCourses;
     private String mIdentity; // prof or student
 
-    public User(String name, String email, String identity) {
-        this.mName = name;
-        this.mEmail = email;
-        this.mCourses = new ArrayList<String> ();
-        this.mIdentity = identity;
-    }
-
     public User(String name, String email, ArrayList<String> courses, String identity) {
       this.mName = name;
       this.mEmail = email;
-      this.mCourses = courses;
+      this.mCourses = courses == null? new ArrayList<String> (): courses;
       this.mIdentity = identity;
     }
     public String getName(){

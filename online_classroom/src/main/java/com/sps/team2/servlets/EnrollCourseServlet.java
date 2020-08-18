@@ -14,7 +14,7 @@ import com.sps.team2.classes.*;
 public class EnrollCourseServlet extends HttpServlet {
 
   private final UserService mUserService = UserServiceFactory.getUserService();
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

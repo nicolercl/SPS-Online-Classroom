@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 @WebServlet("/fetch-course")
 public class FetchCourseServlet extends HttpServlet {
 
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

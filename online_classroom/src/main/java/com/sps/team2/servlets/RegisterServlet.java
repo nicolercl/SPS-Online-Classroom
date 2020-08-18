@@ -14,7 +14,7 @@ import com.sps.team2.classes.*;
 public class RegisterServlet extends HttpServlet {
 
   private final UserService mUserService = UserServiceFactory.getUserService();
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
         response.sendRedirect("/register.html");
       }
       final String identity = request.getParameter("identity");
-      User user = new User(name, userEmail, identity);
+      User user = new User(name, userEmail, null, identity);
 
       //store user to datastore
       mDatastore.storeUser(user);

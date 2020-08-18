@@ -14,7 +14,7 @@ import com.sps.team2.classes.*;
 public class CreateCourseServlet extends HttpServlet {
 
   private final UserService mUserService = UserServiceFactory.getUserService();
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -24,7 +24,7 @@ public class CreateCourseServlet extends HttpServlet {
       final String userEmail = mUserService.getCurrentUser().getEmail();
       final User creator = mDatastore.getUser(userEmail);
       if (creator.getIdentity().equals("professor")){
-        Course course = new Course(courseTitle, creator.getName());
+        Course course = new Course(courseTitle, creator.getName(), null, null, null);
         mDatastore.storeCourse(course);
         mDatastore.addCourseToUser(courseTitle, userEmail);
         response.sendRedirect("/course.html?course=" + courseTitle);
