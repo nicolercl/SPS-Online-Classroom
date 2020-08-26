@@ -21,9 +21,24 @@
   <prerequisites>
     <maven>3.5</maven>
   </prerequisites>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>libraries-bom</artifactId>
+        <version>9.1.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- Compile/runtime dependencies -->
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-datastore</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
@@ -45,6 +60,11 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.8.6</version>
+    </dependency>
+    <dependency>
+      <groupId>net.bramp.ffmpeg</groupId>
+      <artifactId>ffmpeg</artifactId>
+      <version>0.6.2</version>
     </dependency>
 
     <!-- Test Dependencies -->
@@ -98,6 +118,14 @@
         <artifactId>appengine-maven-plugin</artifactId>
         <version>1.3.1</version>
         <configuration>
+          <!-- Default service -->
+          <service>    
+            ${project.build.directory}/${project.name}-${project.version}
+          </service>
+          <!-- One for each additional service -->
+          <service>
+            ${project.parent.basedir}/video/target/video-${project.version}
+          </service>
         </configuration>
       </plugin>
 
@@ -120,6 +148,12 @@
             <exclude>com.google.guava:guava</exclude> <!-- avoid android version -->
           </excludes>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.31.v20200723</version>
       </plugin>
 
       <plugin>
