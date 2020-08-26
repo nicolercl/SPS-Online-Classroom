@@ -1,5 +1,5 @@
 package com.sps.team2.classes;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 
 /** A user class. */
@@ -7,20 +7,13 @@ public class User {
 
     private String mName;
     private String mEmail;
-    private HashSet<String> mCourses;
+    private ArrayList<String> mCourses;
     private String mIdentity; // prof or student
 
-    public User(String name, String email, String identity) {
-        this.mName = name;
-        this.mEmail = email;
-        this.mCourses = new HashSet<String> ();
-        this.mIdentity = identity;
-    }
-
-    public User(String name, String email, HashSet<String> courses, String identity) {
+    public User(String name, String email, ArrayList<String> courses, String identity) {
       this.mName = name;
       this.mEmail = email;
-      this.mCourses = courses;
+      this.mCourses = courses == null? new ArrayList<String> (): courses;
       this.mIdentity = identity;
     }
     public String getName(){
@@ -29,7 +22,7 @@ public class User {
     public String getEmail(){
         return this.mEmail;
     }
-    public HashSet<String> getCourses(){
+    public ArrayList<String> getCourses(){
         return this.mCourses;
     }
     public String getIdentity(){
@@ -41,7 +34,7 @@ public class User {
     public void setEmail(String email){
         this.mEmail = email;
     }
-    public void setCourses(HashSet<String>courses){
+    public void setCourses(ArrayList<String>courses){
         this.mCourses = courses;
     }
     public void setIdentity(String identity){

@@ -14,7 +14,7 @@ import com.sps.team2.classes.*;
 public class RegisterServlet extends HttpServlet {
 
   private final UserService mUserService = UserServiceFactory.getUserService();
-  private final Datastore mDatastore = new Datastore();
+  private final Datastore mDatastore = Datastore.getDatastore();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -24,9 +24,9 @@ public class RegisterServlet extends HttpServlet {
       //if user not found, go to register
       if (mDatastore.getUser(userEmail) == null){
         response.sendRedirect("/register.html");
-        return;
+        // return;
       } else {
-        response.sendRedirect("/dashboard.html?user=" + userEmail);
+        response.sendRedirect("/dashboard.html");
       }
     } else {
       // Redirect to google log in
@@ -42,20 +42,19 @@ public class RegisterServlet extends HttpServlet {
       final String name = request.getParameter("name");
       if (name == null || name == "") {
         response.sendRedirect("/register.html");
-        return;
       }
       final String identity = request.getParameter("identity");
-      User user = new User(name, userEmail, identity);
+      User user = new User(name, userEmail, null, identity);
 
       //store user to datastore
       mDatastore.storeUser(user);
+
       String student = "student";
       if (identity.equals(student)){
           response.sendRedirect("/dashboard.html?user=" + userEmail);
       } else {
           response.sendRedirect("/dashboard_prof.html?user=" + userEmail);
       }
-      
     } else {
       // Redirect to google log in
       String googleLoginUrl = mUserService.createLoginURL("/login");
