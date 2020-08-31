@@ -48,7 +48,13 @@ public class RegisterServlet extends HttpServlet {
 
       //store user to datastore
       mDatastore.storeUser(user);
-      response.sendRedirect("/dashboard.html");
+
+      String student = "student";
+      if (identity.equals(student)){
+          response.sendRedirect("/dashboard.html?user=" + userEmail);
+      } else {
+          response.sendRedirect("/dashboard_prof.html?user=" + userEmail);
+      }
     } else {
       // Redirect to google log in
       String googleLoginUrl = mUserService.createLoginURL("/login");
