@@ -4,16 +4,6 @@
 </head>
 
 <body>
-    <button onclick="ask_title()">change video</button>
-
-    <script>
-    function ask_title() {
-        console.log(document.querySelector("video").src);
-        document.querySelector("video").src = "videos/" + prompt("enter video file name", "roman1.mp4");
-    }
-    </script>
-
-
   <video
     id="my-video"
     class="video-js"
@@ -34,5 +24,19 @@
   </video>
 
   <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
-
+  <script>
+    function ask_title() {
+        console.log(document.querySelector("video").src);
+        document.querySelector("video").src = "videos/" + prompt("enter video file name", "roman1.mp4");
+    }
+    function playback_speed(num) {
+        console.log(document.querySelector('video').playbackRate);
+        document.querySelector('video').playbackRate = num;
+    }
+  </script>
+  <button onclick="ask_title()">change video</button>
+  <button onclick="playback_speed(0.5)">x0.5</button>
+  <button onclick="playback_speed(1.0)">x1</button>
+  <button onclick="playback_speed(1.5)">x1.5</button>
+  <button onclick="playback_speed(2.0)">x2</button>
 </body>
