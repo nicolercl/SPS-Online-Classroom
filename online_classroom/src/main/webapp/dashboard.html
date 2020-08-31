@@ -3,16 +3,18 @@
 <head>
     <title>Dashboard</title>
     <script src="js/loadPage.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body onload="loadDashboardPage()">
     <h1>Dashboard</h1>
     <div id="login-container"></div>
+
     <h2>Enrolled courses</h2>
     <div id="courses-container"></div>
     <h2>All courses</h2>
     <div id="all-courses-container"></div>
     <div id="create-course-container">
-        <h2>Create Course</h2>
+        <h2>View Course</h2>
         <form action='/create-course' method='POST'>
             <label for="courseTitle">Course Title</label>
             <input type="text" name="courseTitle"></input><br/><br/>
